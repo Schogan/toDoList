@@ -2,8 +2,11 @@ package com.example.schogan.todolist;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
 
 public class DbHelper extends SQLiteOpenHelper {
 
@@ -41,6 +44,20 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public void deleteTask(String task){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(DB_TABLE,DB_COLUM + )
+        db.delete(DB_TABLE,DB_COLUM + " - ?", new String[]{task});
+        db.close();
+    }
+
+    public ArrayList<String> getTaskList(){
+        ArrayList<String> taskList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(DB_TABLE,new String[]{DB_COLUM},null,null,null,null,null);
+        while(cursor.moveToNext()){
+            int index = cursor.getColumnIndex(DB_COLUM);
+            taskList.add(cursor.getString(index));
+        }
+        cursor.close();
+        db.close();
+        return taskList;
     }
 }
