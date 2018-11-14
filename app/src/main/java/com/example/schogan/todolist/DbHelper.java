@@ -21,7 +21,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String query = String.format("CREATE TABLE %s (ID INTEGER PRIMARY KET AUTOINCREMENT, %s TEXT NOT NULL", DB_TABLE,DB_COLUM);
+        String query = String.format("CREATE TABLE %s (ID INTEGER PRIMARY KET AUTOINCREMENT, %s TEXT NOT NULL);", DB_TABLE,DB_COLUM);
         db.execSQL(query);
 
     }
