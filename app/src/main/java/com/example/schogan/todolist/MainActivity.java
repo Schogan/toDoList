@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu,menu);
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.action_add_task:
                 final EditText taskEditText = new EditText(this);
-                AlertDialog dialog = new AlertDialog().Builder(this)
+                AlertDialog dialog = new AlertDialog.Builder(this)
                         .setTitle("Add New task")
                         .setMessage("What do you want to do next?")
                         .setView(taskEditText)
